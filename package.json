@@ -1,7 +1,7 @@
 {
   "name": "vehicle-service-platform",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "workspaces": [
     "backend",
     "frontend"
