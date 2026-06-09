@@ -57,3 +57,13 @@ Our access control model relies on centrally defined permission rules mapped to 
 
 To complete the application security hardening process, the identical `requiredPermission` route metadata and middleware pattern must be immediately implemented across these module entry points:* `customers` (Requires `customer.read` / `customer.update` tracking hooks) * `vehicles` (Requires vehicle identification binding authorization)* `jobs` (Requires strict `job.update` access limits) * `quotes` & `invoices` (Requires transactional verification loops)* `payments` (Requires `payment.record` execution boundaries) * `collection` (Requires localized operational auditing metadata)
  
+## Day 2 Focus:Task 2: Customer-Facing Access Risk Review (Blaze Diagnostics) Opening a portal for customers to track their vehicle status online introduces critical exposure vectors. Below is an analysis of the primary risks and recommended mitigations: 
+### 1. Insecure Direct Object References (IDOR)*   
+**The Risk:** Attackers can manipulate URL parameters or API payloads (e.g., altering `job_id=2044` to `job_id=2045`) to unauthorizedly view or modify other users' vehicle diagnostic data, quotes, and personal invoices.*   
+**Mitigation:** The backend must never trust the ID supplied by the browser blindly. Every request must validate that the currently logged-in user session matches the explicit owner ID associated with that vehicle or job card record in the database. 
+### 2. Token Leakage and Unauthenticated Access Links*   
+**The Risk:** If the platform uses unauthenticated "tracking links" sent via email/SMS for convenience, these links can be forwarded, intercepted over insecure public Wi-Fi, or cached in browser histories, exposing customer data to third parties.*   
+**Mitigation:** Implement Short-Lived Tokens (expiring after 48 hours). For higher-risk operations (such as approving a financial quote or viewing an invoice), require the customer to verify their identity via a One-Time Password (OTP) sent to their registered phone number or email. 
+### 3. Excessive Data Exposure in API Responses*   
+**The Risk:** The frontend UI might hide sensitive details, but the raw backend API might be sending complete database objects—including internal wholesale parts pricing, mechanic profit margins, or technical notes about the customer.*   
+**Mitigation:** Use strict Data Transfer Objects (DTOs) on the backend to filter API responses, ensuring only explicitly allowed public fields (status, public description, finalized total) are transmitted to the customer's browser.
