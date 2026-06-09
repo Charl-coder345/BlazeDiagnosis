@@ -35,3 +35,25 @@ Mechanics should only edit job cards and parts lists.
 Admins should be the only ones managing billing and invoicing.
 Injection Prevention: Are all inputs in the job card and customer forms sanitized using Prisma ORM parameterized queries to block SQL Injection?
 GitHub Secret Hygiene: Verify that no database connection strings or environment variables are written in plain text within the Next.js or TypeScript code. They must live in GitHub Secrets.
+
+
+### CORE ROLE-BASED ACCESS CONTROL (RBAC) & AUTHORIZATION CHECKLIST
+Our access control model relies on centrally defined permission rules mapped to specific user tokens. Permissions are managed in `backend/src/shared/auth/permissions.ts` and enforced via backend middleware.
+
+#### 1. System Role Matrix (Principle of Least Privilege)*
+
+**OWNER & ADMIN:** Full system clearance. Authorized for global configuration actions (`tenant.create`, `tenant.update`, `user.create`, `user.update`).*
+**ADVISOR & MECHANIC:** Core operational access. Authorized for workflow adjustments (`customer.read`, `job.update`). Mechanics are strictly restricted from financial payment fields.* 
+**CASHIER & POS_OPERATOR:** Financial transaction workflows. Authorized to record transaction inputs (`payment.record`). Restricted from modifying baseline vehicle job logs or system user directories.* 
+**SUPPLIER_ADMIN, SUPPLIER_SALES, SUPPLIER_WAREHOUSE:** External entity boundaries. Restricted entirely from tenant core configurations, customer PII records, or internal shop billing systems. Authorized only for parts supply-chain inventory metadata. 
+
+#### 2. Middleware Enforcement Architecture To maintain a secure development lifecycle, every API route must execute three core sequential middleware checks: 
+
+1.  **Authentication (`backend/src/shared/middleware/auth.ts`):** Parses incoming Bearer tokens, validates cryptographic signatures, checks expiration windows, and hydrates the `AuthContext` with role and permission arrays.
+2.  **Authorization (`backend/src/shared/middleware/authorization.ts`):** Enforces explicit route-level checking using `requirePermission()` or `requireAnyPermission()`.
+3.  **Tenant Isolation (`backend/src/shared/middleware/tenant-scope.ts`):** Critical barrier running `enforceTenantScope()` and `ensureRecordInTenant()`. This prevents cross-tenant payload injection, data leakage via forged identifiers, or unauthorized database record reads across distinct shop boundaries.
+
+#### 3. Immediate Route Security Audit Next Steps Starter permission metadata has already been successfully applied to the `tenants` and `users` route configurations.
+
+To complete the application security hardening process, the identical `requiredPermission` route metadata and middleware pattern must be immediately implemented across these module entry points:* `customers` (Requires `customer.read` / `customer.update` tracking hooks) * `vehicles` (Requires vehicle identification binding authorization)* `jobs` (Requires strict `job.update` access limits) * `quotes` & `invoices` (Requires transactional verification loops)* `payments` (Requires `payment.record` execution boundaries) * `collection` (Requires localized operational auditing metadata)
+ 
