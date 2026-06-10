@@ -4,6 +4,16 @@ Blaze Diagnostics is a workshop management and customer communication system for
 
 The system is intended to improve communication between workshops and clients by tracking vehicle jobs, quote approvals, parts ordering, parts delivery, mechanic progress, invoicing, and collection readiness.
 
+## Tech Stack explained
+Understanding what each tech stack do helps you to work with the code more confident and enables informed decision making.
+
+- Next.js: a React-based full-stack framework designed for building fast and production ready web applications, key features of Next.js includes File-based Routing and API Routes.
+  
+- TypeScript : a strongly typed programming language that builds on JavaScript to support a tighter intergration with a coding editor, and catching errors early in the development process.
+  
+- React: a JavaScript library developed by Facebook for building dynamic and efficient user interfaces.
+  It is widely used for creating single-page applications (SPAs) and follows a component-based architecture
+  
 ## Current Technical Stack
 
 - Frontend: Next.js, React, TypeScript, Tailwind CSS

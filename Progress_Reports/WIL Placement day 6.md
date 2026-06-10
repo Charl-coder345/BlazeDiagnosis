@@ -28,20 +28,21 @@ This helps ensure me that I wont have to struggle with spaghetti code, which bri
 - [x] Clone the reposition
 - [x] Install dependencies
 - [x] Try to run the project locally
-- [ ] Document any errors
+- [x] Document any errors
+You wil get an error when trying to run the app in the root directory instead of the frontend directory use `cd frontend` to navigate to it.
 - [ ] Do not silently struggle with setup problem
 
 **Task 3:** *Review the MVP Backlog*
-- [ ] Read the MVP user stories
+- [x] Read the MVP user stories
 - [ ] Identify which feature area you understand best
 - [ ] Choose one small issue to start with
 - [ ] Comment on the issue before working on it
 
 **Task 4:** *Create or Improve Documentation*
-- [ ] Improve setup instructions 
-- [ ] Add missing notes for new students
-- [ ] Documents common setup errors
-- [ ] Add explanations for the tech stack
+- [x] Improve setup instructions 
+- [x] Add missing notes for new students
+- [x] Documents common setup errors
+- [x] Add explanations for the tech stack
 
 **Task 5:** *Fronted Starter Task*
 - [x] Review an exiting page or components
