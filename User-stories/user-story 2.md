@@ -1,7 +1,7 @@
 ## User-story: ...
 
 **As a** Receptionist
-**I want** to be able to navigate through the data of customers to write quotes and invoices out to them in an organized manner and to give an estimated date of completion
+**Receptionists** should easily find customer details, create quotes and invoices quickly, and see when work will be finished
 **So that** the receptionist can complete their quotes faster and more effectively, and be able to process quotes and invoices
 
 ## Acceptance Criteria:
