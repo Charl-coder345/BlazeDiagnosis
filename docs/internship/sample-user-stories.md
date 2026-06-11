@@ -20,8 +20,12 @@
 
 1. ** As a Customer **, I want to view the status of my vehicle service in real-time via SMS or a self-service portal, so I know when my car will be ready.
 
-2. ** As a Technician **, I want to update the job card with completed tasks, used parts, and labor hours, so the invoice is accurate and inventory is updated automatically.
+2. ** As a Technician **, I want to improve the system card with completed task privilages and assets aswell as , used parts, and labor hours, so the invoice is accurate and inventory is updated automatically.
 
-3. ** As a Cashier **, I want to generate a final invoice that includes labor, parts, taxes, and discounts, and accept multiple payment methods (cash, card, UPI, wallet), so I can close the job quickly.
+3. ** As a Cashier **, I want to generate a final invoice that includes financial assets , and accept multiple payment methods (cash, card, UPI, wallet), so I can close the job quickly.
 
-4. ** As a Service Station Manager **, I want real-time dashboards showing pending jobs, technician productivity, and daily revenue, so I can manage operations efficiently.
+4. ** As a Service Station Manager **, I want real-time dashboards showing pending jobs, technician productivity, and daily revenue, so I can manage operational tasks.
+
+
+
+
